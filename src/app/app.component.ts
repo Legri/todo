@@ -1,27 +1,9 @@
 import { Component } from '@angular/core';
 
-class Todo{
-  
-  constructor(public  title:string,
-              public completed :boolean = false ){
+import {Todo} from './shared/todo';
+import {todos} from './shared/data';
 
-  }
-}
 
-const todos= [
-  {
-    title:'javascript1',
-    completed:true
-  },
-  {
-    title:'javascript2',
-    completed:false
-  },
-  {
-    title:'javascript3',
-    completed:true
-  }
-]
 
 @Component({
   selector: 'app-root',
@@ -30,24 +12,16 @@ const todos= [
 })
 export class AppComponent {
   title = 'app';
-  todos: Todo[]= todos;
-  newTodoTitle:string = '';
+  todos:Todo[] = todos;
 
- create(){
-   
-  let todo:Todo=new Todo(this.newTodoTitle);
-  this.todos.push(todo);
-  this.newTodoTitle="";
+ create(title:string){
+
+const todo = new Todo(title);
+this.todos.push(todo);
+
  }
+ 
 
-  togle(todo:any){
-   todo.completed=!todo.completed;
-  }
+ 
 
-  delete(todo:any){
-    let index = this.todos.indexOf(todo);
-    if (index>-1){
-      this.todos.splice(index,1);
-    }
-  }
 }

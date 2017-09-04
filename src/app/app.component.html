@@ -13,35 +13,13 @@
 <main style="text-align:center">
 
 
-<form  class="todo-form" (ngSubmit)="create(); todoForm.reset() " #todoForm="ngForm">
-  <input type="text" name="title" [(ngModel)]="newTodoTitle" required>
- 
-  <button type="submit" [disabled]="todoForm.form.invalid" >ADD</button>
-</form>
+    <app-todo-form (add)="create($event)"></app-todo-form>
 
 
-
-  <section class="todo-list">
-
-    <div class="todo-item" *ngFor="let todo of todos" [ngClass]="{'completed':todo.completed}" >
-          <button class="checkbox icon" (click)="togle(todo)">
-         
-          <i class="material-icons">{{todo.completed? 'check_box':'check_box_outline_blank'}}</i>
-        </button>
-
-        <span class="title">{{todo.title}}</span>
-
-        <div class="action">
-
-          <button class="delete icon" (click)="delete(todo)">
-            <i class="material-icons">delete</i>
-          </button>
-        </div>
+    <app-todo-list [todos]="todos" ></app-todo-list>
 
 
-
-    </div>
-  </section>
+  
 </main>
 
 
